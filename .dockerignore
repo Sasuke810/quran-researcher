@@ -51,12 +51,10 @@ Dockerfile
 .dockerignore
 docker-compose.yml
 
-# Database
-database/init
-database/migrations
+# Database (keep init for reference, but migrations and scripts are needed in container)
 postgres_data
 
-# Scripts
+# Scripts (keep database scripts, ignore others)
 scripts
 
 # Documentation

@@ -7,13 +7,9 @@ WORKDIR /app
 # Temporarily unset NODE_ENV to ensure devDependencies are installed
 ENV NODE_ENV=
 
-# Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+# Install dependencies using yarn
+COPY package.json yarn.lock* ./
+RUN yarn --frozen-lockfile
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
@@ -31,11 +27,7 @@ ENV OPENROUTER_API_KEY=dummy_key_for_build
 ENV OPENAI_API_KEY=dummy_key_for_build
 
 # Build the application
-RUN \
-  if [ -f yarn.lock ]; then yarn build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+RUN yarn build
 
 # Stage 3: Runner
 FROM node:20-alpine AS runner
@@ -43,6 +35,9 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+
+# Install wget for healthcheck and bash for scripts
+RUN apk add --no-cache wget bash
 
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs
@@ -53,6 +48,25 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
+# Copy node_modules (includes both prod and dev dependencies for migrations)
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+
+# Copy package.json for yarn migrate command
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /app/yarn.lock ./yarn.lock
+
+# Copy migration system files and database migrations
+COPY --from=builder --chown=nextjs:nodejs /app/src/lib/migrations ./src/lib/migrations
+COPY --from=builder --chown=nextjs:nodejs /app/src/lib/database ./src/lib/database
+COPY --from=builder --chown=nextjs:nodejs /app/src/lib/models ./src/lib/models
+COPY --from=builder --chown=nextjs:nodejs /app/src/lib/repositories ./src/lib/repositories
+COPY --from=builder --chown=nextjs:nodejs /app/database/migrations ./database/migrations
+COPY --from=builder --chown=nextjs:nodejs /app/database/docker-entrypoint.sh ./database/docker-entrypoint.sh
+COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./tsconfig.json
+
+# Make entrypoint script executable
+RUN chmod +x /app/database/docker-entrypoint.sh
+
 # Change ownership to nextjs user
 RUN chown -R nextjs:nodejs /app
 
@@ -62,6 +76,9 @@ EXPOSE 3000
 
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+
+# Use custom entrypoint that runs migrations
+ENTRYPOINT ["/app/database/docker-entrypoint.sh"]
 
 # Start the application
 CMD ["node", "server.js"]

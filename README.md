@@ -15,6 +15,8 @@ A Next.js application for Quran study with AI-powered features, semantic search,
 Make sure Docker Desktop is running on your machine. You can start it via:
 - **macOS**: Open Docker Desktop from Applications
 - **Command line**: `open -a Docker` (macOS)
+- **Windows**: Start Docker Desktop from the Start menu
+- **Linux**: `sudo service docker start`
 
 Verify Docker is running:
 ```bash
