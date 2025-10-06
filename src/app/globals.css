@@ -1,0 +1,517 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* ============================================
+     LIGHT MODE - Depth-Based Color System
+     ============================================ */
+  
+  /* Background Layers (Base/Furthest) */
+  --color-bg-base: 241 245 249; /* Slate 100 - Deepest layer */
+  --color-bg-layer-1: 248 250 252; /* Slate 50 - First elevation */
+  --color-bg-layer-2: 252 252 253; /* Near white - Second elevation */
+  --color-bg-layer-3: 255 255 255; /* White - Highest elevation */
+  
+  /* Surface Layers (Interactive Elements) */
+  --color-surface-base: 255 255 255; /* White - Base surface */
+  --color-surface-raised: 249 250 251; /* Gray 50 - Slightly raised */
+  --color-surface-elevated: 243 244 246; /* Gray 100 - More elevated */
+  --color-surface-floating: 237 239 242; /* Gray 150 - Floating elements */
+  
+  /* Interactive States */
+  --color-interactive-base: 249 250 251; /* Gray 50 */
+  --color-interactive-hover: 243 244 246; /* Gray 100 */
+  --color-interactive-active: 229 231 235; /* Gray 200 */
+  --color-interactive-pressed: 209 213 219; /* Gray 300 - Inset effect */
+  
+  /* Border Layers */
+  --color-border-subtle: 241 245 249; /* Slate 100 */
+  --color-border-default: 226 232 240; /* Slate 200 */
+  --color-border-strong: 203 213 225; /* Slate 300 */
+  --color-border-accent: 94 234 212; /* Teal accent */
+  
+  /* Text Hierarchy */
+  --color-text-primary: 15 23 42; /* Slate 900 - Highest contrast */
+  --color-text-secondary: 51 65 85; /* Slate 700 */
+  --color-text-tertiary: 100 116 139; /* Slate 500 */
+  --color-text-quaternary: 148 163 184; /* Slate 400 */
+  
+  /* Accent Color Shades */
+  --color-accent-50: 204 251 241; /* Teal 50 */
+  --color-accent-100: 153 246 228; /* Teal 100 */
+  --color-accent-200: 129 212 206; /* Lighter teal */
+  --color-accent-300: 94 196 188; /* Primary teal #5EC4BC */
+  --color-accent-400: 75 170 163; /* Darker teal */
+  --color-accent-500: 56 144 138; /* Deep teal */
+  
+  /* Slate Blue Shades */
+  --color-slate-50: 219 234 254; /* Blue 100 */
+  --color-slate-100: 191 219 254; /* Blue 200 */
+  --color-slate-200: 120 160 200; /* Light slate blue */
+  --color-slate-300: 100 140 180; /* Medium slate blue */
+  --color-slate-400: 71 111 157; /* Primary slate #476F9D */
+  --color-slate-500: 51 91 137; /* Dark slate */
+  
+  /* Purple Shades */
+  --color-purple-50: 237 233 254; /* Purple 100 */
+  --color-purple-100: 221 214 254; /* Purple 200 */
+  --color-purple-200: 160 150 190; /* Light purple */
+  --color-purple-300: 120 110 150; /* Medium purple */
+  --color-purple-400: 99 91 130; /* Primary purple #635B82 */
+  --color-purple-500: 79 71 110; /* Dark purple */
+  
+  /* Message Backgrounds */
+  --color-user-msg-base: 240 253 250; /* Teal 50 */
+  --color-user-msg-elevated: 204 251 241; /* Teal 100 */
+  --color-assistant-msg-base: 248 250 252; /* Slate 50 */
+  --color-assistant-msg-elevated: 241 245 249; /* Slate 100 */
+  
+  /* ============================================
+     DARK MODE - Cursor-Inspired Color System
+     ============================================ */
+  
+  /* Background Layers (Base/Furthest) - Darker, neutral grays */
+  --color-dark-bg-base: 10 10 10; /* #0A0A0A - Very dark neutral */
+  --color-dark-bg-layer-1: 18 18 18; /* #121212 - First elevation */
+  --color-dark-bg-layer-2: 24 24 24; /* #181818 - Second elevation */
+  --color-dark-bg-layer-3: 32 32 32; /* #202020 - Highest elevation */
+  
+  /* Surface Layers (Interactive Elements) - Subtle blue-gray tones */
+  --color-dark-surface-base: 24 24 26; /* #18181A - Base surface with slight blue */
+  --color-dark-surface-raised: 32 32 35; /* #202023 - Slightly raised */
+  --color-dark-surface-elevated: 40 40 44; /* #28282C - More elevated */
+  --color-dark-surface-floating: 48 48 52; /* #303034 - Floating */
+  
+  /* Interactive States - Subtle highlights */
+  --color-dark-interactive-base: 36 36 39; /* #242427 */
+  --color-dark-interactive-hover: 44 44 48; /* #2C2C30 */
+  --color-dark-interactive-active: 52 52 57; /* #343439 */
+  --color-dark-interactive-pressed: 24 24 26; /* #18181A - Inset effect */
+  
+  /* Border Layers - Subtle borders */
+  --color-dark-border-subtle: 38 38 41; /* #262629 */
+  --color-dark-border-default: 58 58 63; /* #3A3A3F */
+  --color-dark-border-strong: 78 78 84; /* #4E4E54 */
+  --color-dark-border-accent: 94 196 188; /* Teal accent */
+  
+  /* Text Hierarchy - High contrast whites and grays */
+  --color-dark-text-primary: 235 235 235; /* #EBEBEB - Highest contrast */
+  --color-dark-text-secondary: 180 180 180; /* #B4B4B4 - Secondary text */
+  --color-dark-text-tertiary: 140 140 140; /* #8C8C8C - Tertiary text */
+  --color-dark-text-quaternary: 100 100 100; /* #646464 - Quaternary text */
+  
+  /* Accent Color Shades - Vibrant teal/cyan for dark mode */
+  --color-dark-accent-50: 45 135 130; /* Deep teal */
+  --color-dark-accent-100: 65 155 150; /* Darker teal */
+  --color-dark-accent-200: 85 175 170; /* Primary teal */
+  --color-dark-accent-300: 110 195 190; /* Lighter teal */
+  --color-dark-accent-400: 140 215 210; /* Very light teal */
+  --color-dark-accent-500: 180 235 230; /* Teal 50 */
+  
+  /* Slate Blue Shades - Muted blues for dark mode */
+  --color-dark-slate-50: 60 90 120; /* Dark slate */
+  --color-dark-slate-100: 75 105 135; /* Primary slate */
+  --color-dark-slate-200: 95 125 155; /* Medium slate blue */
+  --color-dark-slate-300: 115 145 175; /* Light slate blue */
+  --color-dark-slate-400: 135 165 195; /* Very light slate */
+  --color-dark-slate-500: 160 185 210; /* Blue 200 */
+  
+  /* Purple Shades - Muted purples for dark mode */
+  --color-dark-purple-50: 85 75 105; /* Dark purple */
+  --color-dark-purple-100: 100 90 120; /* Primary purple */
+  --color-dark-purple-200: 115 105 135; /* Medium purple */
+  --color-dark-purple-300: 130 120 150; /* Light purple */
+  --color-dark-purple-400: 150 140 170; /* Very light purple */
+  --color-dark-purple-500: 175 165 195; /* Purple 300 */
+  
+  /* Message Backgrounds - Distinct but subtle */
+  --color-dark-user-msg-base: 26 30 36; /* #1A1E24 - Slightly blue-tinted */
+  --color-dark-user-msg-elevated: 32 36 42; /* #20242A */
+  --color-dark-assistant-msg-base: 32 32 35; /* #202023 - Neutral gray */
+  --color-dark-assistant-msg-elevated: 40 40 44; /* #28282C */
+  
+  /* ============================================
+     SHADOW SYSTEM - Enhanced Depth & Realism
+     ============================================ */
+  
+  /* Light Mode Shadows - Soft, natural depth */
+  --shadow-xs: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),  /* Top highlight */
+    0 1px 2px rgba(0, 0, 0, 0.06),           /* Dark shadow */
+    0 1px 3px rgba(0, 0, 0, 0.03);           /* Soft shadow */
+  
+  --shadow-sm: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),  /* Top highlight */
+    0 1px 2px rgba(0, 0, 0, 0.08),           /* Dark shadow */
+    0 2px 4px rgba(0, 0, 0, 0.04),           /* Soft shadow */
+    0 4px 8px rgba(0, 0, 0, 0.02);           /* Diffuse shadow */
+  
+  --shadow-md: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),  /* Top highlight */
+    0 2px 4px rgba(0, 0, 0, 0.1),            /* Dark shadow */
+    0 4px 8px rgba(0, 0, 0, 0.06),           /* Soft shadow */
+    0 8px 16px rgba(0, 0, 0, 0.03);          /* Diffuse shadow */
+  
+  --shadow-lg: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),  /* Top highlight */
+    0 4px 6px rgba(0, 0, 0, 0.1),            /* Dark shadow */
+    0 8px 16px rgba(0, 0, 0, 0.08),          /* Soft shadow */
+    0 16px 32px rgba(0, 0, 0, 0.04);         /* Diffuse shadow */
+  
+  --shadow-xl: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),  /* Top highlight */
+    0 8px 12px rgba(0, 0, 0, 0.12),          /* Dark shadow */
+    0 16px 32px rgba(0, 0, 0, 0.1),          /* Soft shadow */
+    0 32px 64px rgba(0, 0, 0, 0.06);         /* Diffuse shadow */
+  
+  /* Dark Mode Shadows - Stronger, more dramatic */
+  --shadow-dark-xs: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08), /* Top highlight */
+    0 1px 2px rgba(0, 0, 0, 0.4),            /* Dark shadow */
+    0 2px 4px rgba(0, 0, 0, 0.2);            /* Soft shadow */
+  
+  --shadow-dark-sm: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.06), /* Top highlight */
+    0 1px 3px rgba(0, 0, 0, 0.5),            /* Dark shadow */
+    0 2px 6px rgba(0, 0, 0, 0.3),            /* Soft shadow */
+    0 4px 12px rgba(0, 0, 0, 0.15);          /* Diffuse shadow */
+  
+  --shadow-dark-md: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.05), /* Top highlight */
+    0 2px 4px rgba(0, 0, 0, 0.6),            /* Dark shadow */
+    0 4px 12px rgba(0, 0, 0, 0.4),           /* Soft shadow */
+    0 8px 24px rgba(0, 0, 0, 0.2);           /* Diffuse shadow */
+  
+  --shadow-dark-lg: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.04), /* Top highlight */
+    0 4px 8px rgba(0, 0, 0, 0.7),            /* Dark shadow */
+    0 8px 24px rgba(0, 0, 0, 0.5),           /* Soft shadow */
+    0 16px 48px rgba(0, 0, 0, 0.3);          /* Diffuse shadow */
+  
+  --shadow-dark-xl: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.03), /* Top highlight */
+    0 8px 16px rgba(0, 0, 0, 0.8),           /* Dark shadow */
+    0 16px 48px rgba(0, 0, 0, 0.6),          /* Soft shadow */
+    0 32px 96px rgba(0, 0, 0, 0.4);          /* Diffuse shadow */
+  
+  /* Inset Shadows (Pressed/Depressed Effect) */
+  --shadow-inset: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.12),     /* Top shadow */
+    inset 0 1px 2px rgba(0, 0, 0, 0.08),     /* Subtle depth */
+    inset 0 0 0 1px rgba(0, 0, 0, 0.04);     /* Inner border */
+  
+  --shadow-dark-inset: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.6),      /* Top shadow */
+    inset 0 1px 2px rgba(0, 0, 0, 0.4),      /* Subtle depth */
+    inset 0 0 0 1px rgba(0, 0, 0, 0.3);      /* Inner border */
+  
+  /* Glow Effects for Interactive Elements */
+  --glow-accent: 
+    0 0 20px rgba(94, 196, 188, 0.25),
+    0 0 40px rgba(94, 196, 188, 0.1);
+  
+  --glow-accent-strong: 
+    0 0 30px rgba(94, 196, 188, 0.4),
+    0 0 60px rgba(94, 196, 188, 0.2);
+  
+  --glow-dark-accent: 
+    0 0 20px rgba(94, 196, 188, 0.35),
+    0 0 40px rgba(94, 196, 188, 0.15);
+  
+  --glow-dark-accent-strong: 
+    0 0 30px rgba(94, 196, 188, 0.5),
+    0 0 60px rgba(94, 196, 188, 0.25);
+}
+
+/* Base styles */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(var(--color-bg-base));
+  color: rgb(var(--color-text-primary));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode - Override CSS variables when .dark class is present */
+.dark {
+  /* Background Layers */
+  --color-bg-base: var(--color-dark-bg-base);
+  --color-bg-layer-1: var(--color-dark-bg-layer-1);
+  --color-bg-layer-2: var(--color-dark-bg-layer-2);
+  --color-bg-layer-3: var(--color-dark-bg-layer-3);
+  
+  /* Surface Layers */
+  --color-surface-base: var(--color-dark-surface-base);
+  --color-surface-raised: var(--color-dark-surface-raised);
+  --color-surface-elevated: var(--color-dark-surface-elevated);
+  --color-surface-floating: var(--color-dark-surface-floating);
+  
+  /* Interactive States */
+  --color-interactive-base: var(--color-dark-interactive-base);
+  --color-interactive-hover: var(--color-dark-interactive-hover);
+  --color-interactive-active: var(--color-dark-interactive-active);
+  --color-interactive-pressed: var(--color-dark-interactive-pressed);
+  
+  /* Border Layers */
+  --color-border-subtle: var(--color-dark-border-subtle);
+  --color-border-default: var(--color-dark-border-default);
+  --color-border-strong: var(--color-dark-border-strong);
+  --color-border-accent: var(--color-dark-border-accent);
+  
+  /* Text Hierarchy */
+  --color-text-primary: var(--color-dark-text-primary);
+  --color-text-secondary: var(--color-dark-text-secondary);
+  --color-text-tertiary: var(--color-dark-text-tertiary);
+  --color-text-quaternary: var(--color-dark-text-quaternary);
+  
+  /* Accent Colors */
+  --color-accent-50: var(--color-dark-accent-50);
+  --color-accent-100: var(--color-dark-accent-100);
+  --color-accent-200: var(--color-dark-accent-200);
+  --color-accent-300: var(--color-dark-accent-300);
+  --color-accent-400: var(--color-dark-accent-400);
+  --color-accent-500: var(--color-dark-accent-500);
+  
+  /* Slate Colors */
+  --color-slate-50: var(--color-dark-slate-50);
+  --color-slate-100: var(--color-dark-slate-100);
+  --color-slate-200: var(--color-dark-slate-200);
+  --color-slate-300: var(--color-dark-slate-300);
+  --color-slate-400: var(--color-dark-slate-400);
+  --color-slate-500: var(--color-dark-slate-500);
+  
+  /* Purple Colors */
+  --color-purple-50: var(--color-dark-purple-50);
+  --color-purple-100: var(--color-dark-purple-100);
+  --color-purple-200: var(--color-dark-purple-200);
+  --color-purple-300: var(--color-dark-purple-300);
+  --color-purple-400: var(--color-dark-purple-400);
+  --color-purple-500: var(--color-dark-purple-500);
+  
+  /* Message Backgrounds */
+  --color-user-msg-base: var(--color-dark-user-msg-base);
+  --color-user-msg-elevated: var(--color-dark-user-msg-elevated);
+  --color-assistant-msg-base: var(--color-dark-assistant-msg-base);
+  --color-assistant-msg-elevated: var(--color-dark-assistant-msg-elevated);
+}
+
+.dark body {
+  background-color: rgb(var(--color-dark-bg-base));
+  color: rgb(var(--color-dark-text-primary));
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-border-strong));
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-dark-border-strong));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-accent-300));
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-dark-accent-200));
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Dark mode shadow overrides */
+.dark {
+  --shadow-xs: var(--shadow-dark-xs);
+  --shadow-sm: var(--shadow-dark-sm);
+  --shadow-md: var(--shadow-dark-md);
+  --shadow-lg: var(--shadow-dark-lg);
+  --shadow-xl: var(--shadow-dark-xl);
+  --shadow-inset: var(--shadow-dark-inset);
+  --glow-accent: var(--glow-dark-accent);
+  --glow-accent-strong: var(--glow-dark-accent-strong);
+}
+
+/* ============================================
+   UTILITY CLASSES - Shadow System
+   ============================================ */
+
+/* Shadow Utilities (automatically switch based on dark mode) */
+.shadow-depth-xs {
+  box-shadow: var(--shadow-xs);
+}
+
+.shadow-depth-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-depth-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-depth-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-depth-xl {
+  box-shadow: var(--shadow-xl);
+}
+
+.shadow-depth-inset {
+  box-shadow: var(--shadow-inset);
+}
+
+/* Glow Effects */
+.glow-accent {
+  box-shadow: var(--glow-accent);
+}
+
+.glow-accent-strong {
+  box-shadow: var(--glow-accent-strong);
+}
+
+/* Combined Shadow + Glow */
+.shadow-glow-sm {
+  box-shadow: var(--shadow-sm), var(--glow-accent);
+}
+
+.shadow-glow-md {
+  box-shadow: var(--shadow-md), var(--glow-accent);
+}
+
+.shadow-glow-lg {
+  box-shadow: var(--shadow-lg), var(--glow-accent-strong);
+}
+
+@layer components {
+  .markdown-content .quran-verse-block {
+    position: relative;
+    margin: 1.25rem 0;
+    padding: 1.5rem 1.75rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(94, 196, 188, 0.35);
+    background: linear-gradient(135deg, rgba(94, 196, 188, 0.16), rgba(99, 91, 130, 0.1));
+    box-shadow: 0 20px 45px rgba(71, 111, 157, 0.16);
+    font-family: "Amiri Quran", "Scheherazade New", "Lateef", "Noto Naskh Arabic", serif;
+    font-size: 1.18rem;
+    line-height: 2.15;
+    text-align: justify;
+    direction: rtl;
+    color: rgb(var(--color-text-primary));
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .markdown-content .quran-verse-block::before,
+  .markdown-content .quran-verse-block::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: radial-gradient(circle at center, rgba(94, 196, 188, 0.22), transparent 70%);
+    z-index: -1;
+  }
+
+  .markdown-content .quran-verse-block::before {
+    inset-inline-start: -3rem;
+    inset-block-start: -3rem;
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .markdown-content .quran-verse-block::after {
+    inset-inline-end: -4rem;
+    inset-block-end: -4rem;
+    width: 14rem;
+    height: 14rem;
+    background: radial-gradient(circle at center, rgba(99, 91, 130, 0.18), transparent 75%);
+  }
+
+  .dark .markdown-content .quran-verse-block {
+    border-color: rgba(110, 195, 190, 0.35);
+    background: linear-gradient(135deg, rgba(65, 155, 150, 0.2), rgba(120, 150, 190, 0.16));
+    box-shadow: 0 18px 40px rgba(20, 20, 20, 0.45);
+    color: rgb(var(--color-dark-text-primary));
+  }
+
+  .dark .markdown-content .quran-verse-block::before {
+    background: radial-gradient(circle at center, rgba(110, 195, 190, 0.28), transparent 70%);
+  }
+
+  .dark .markdown-content .quran-verse-block::after {
+    background: radial-gradient(circle at center, rgba(135, 165, 195, 0.25), transparent 75%);
+  }
+
+  .markdown-content .quran-verse {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+    color: rgb(var(--color-text-primary));
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .markdown-content .quran-verse::before,
+  .markdown-content .quran-verse::after {
+    content: "۞";
+    font-size: 0.9rem;
+    color: rgba(94, 196, 188, 0.9);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+
+  .dark .markdown-content .quran-verse {
+    background: rgba(32, 32, 35, 0.6);
+    color: rgb(var(--color-dark-text-primary));
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  }
+
+  .dark .markdown-content .quran-verse::before,
+  .dark .markdown-content .quran-verse::after {
+    color: rgba(140, 215, 210, 0.95);
+  }
+
+  .markdown-content .quran-verse-block .quran-verse {
+    display: block;
+    padding: 0;
+    margin: 0.5rem 0;
+    background: transparent;
+    text-shadow: none;
+    font-size: 1.24rem;
+    line-height: 2.15;
+  }
+
+  .markdown-content .quran-verse-block .quran-verse::before,
+  .markdown-content .quran-verse-block .quran-verse::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(94, 196, 188, 0.55), transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .markdown-content .quran-verse-block,
+    .markdown-content .quran-verse {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+.pnp
+.pnp.js
+
+# Testing
+coverage
+.nyc_output
+
+# Next.js
+.next
+out
+build
+dist
+
+# Production
+*.log
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+*.tsbuildinfo
+
+# Local env files
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+
+# Vercel
+.vercel
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Database
+database/init
+database/migrations
+postgres_data
+
+# Scripts
+scripts
+
+# Documentation
+README.md
+*.md

@@ -1,0 +1,2 @@
+database/migrations/*.sql filter=lfs diff=lfs merge=lfs -text
+scripts/*.parquet filter=lfs diff=lfs merge=lfs -text
