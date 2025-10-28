@@ -1,203 +1,90 @@
-# Quran Researcher
+# 📖 quran-researcher - Study the Quran with Ease
 
-A Next.js application for Quran study with AI-powered features, semantic search, and tafsir integration.
+[![Download Now](https://img.shields.io/badge/Download%20Now-%20🌟-blue)](https://github.com/Sasuke810/quran-researcher/releases)
 
-## Prerequisites
+## 📥 Download & Install
+
+To get started with Quran Researcher, visit the [Releases page](https://github.com/Sasuke810/quran-researcher/releases) to download the latest version. Follow the steps below to set up the application on your device.
+
+## ⚙️ Prerequisites
+
+Before installing Quran Researcher, ensure you have the following tools on your system:
 
 - **Docker Desktop** - [Download and install Docker Desktop](https://www.docker.com/products/docker-desktop)
-- **Node.js 20+** (for local development without Docker)
-- **Yarn** (package manager)
+- **Node.js 20+** - Required if you choose to run the application locally without Docker.
+- **Yarn** - A package manager for Node.js applications.
 
-## Quick Start with Docker
+## 🚀 Getting Started with Docker
+
+Loading up Quran Researcher using Docker is straightforward. Follow these steps:
 
 ### 1. Ensure Docker is Running
 
-Make sure Docker Desktop is running on your machine. You can start it via:
-- **macOS**: Open Docker Desktop from Applications
-- **Command line**: `open -a Docker` (macOS)
-- **Windows**: Start Docker Desktop from the Start menu
-- **Linux**: `sudo service docker start`
+Make sure Docker Desktop is active on your machine. You can start it in different ways depending on your operating system:
 
-Verify Docker is running:
+- **macOS**: Open Docker Desktop from the Applications folder.
+- **Command line**: Use `open -a Docker` to launch it.
+- **Windows**: Start Docker Desktop from your Start menu.
+- **Linux**: Run `sudo service docker start` to activate it.
+
+To confirm Docker is running correctly, use the following command:
+
 ```bash
 docker info
 ```
 
-### 2. Clone and Setup
+### 2. Clone and Setup the Repository
+
+Next, you’ll need to clone the repository to your local machine. Execute the following commands in your terminal:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd quran.arabic.tech
+git clone https://github.com/Sasuke810/quran-researcher.git
+cd quran-researcher
 
-# Copy environment file (if exists)
+# Copy the environment file (if it exists)
 cp .env.example .env
 ```
 
 ### 3. Start All Services
+
+To launch the application with all necessary services, use:
 
 ```bash
 # Build and start all containers (PostgreSQL + Next.js app)
 docker-compose up -d --build
 ```
 
-This will:
-- Pull the `pgvector/pgvector:pg16` PostgreSQL image
-- Build the Next.js application
-- Run database migrations automatically
-- Start the app on port **3000**
-- Start PostgreSQL on port **5434**
+This will set up a PostgreSQL database along with the Quran Researcher application, allowing you to access the features instantly.
 
-### 4. Access the Application
+## 🛠️ Features
 
-- **Web App**: http://localhost:3000
-- **PostgreSQL**: `localhost:5434`
-  - Database: `quran` (or value from `DB_NAME`)
-  - User: `app` (or value from `DB_USER`)
-  - Password: `secret` (or value from `DB_PASSWORD`)
+Quran Researcher comes packed with features that enhance your Quran study experience:
 
-### 5. Check Status
+- **AI-Powered Search**: Quickly find verses and tafsir with smart queries.
+- **Semantic Search**: Discover related verses and meanings.
+- **Tafsir Integration**: Access detailed explanations alongside the original text.
+- **User-Friendly Interface**: Navigate effortlessly to make your study productive.
 
-```bash
-# View running containers
-docker-compose ps
+## 📖 Explore the App
 
-# View logs
-docker-compose logs -f
+Once all services are up and running, open your web browser and navigate to `http://localhost:3000`. Here, you can start using Quran Researcher and explore each feature to enhance your learning.
 
-# View app logs only
-docker-compose logs -f app
+## ⭐ Support and Feedback
 
-# View database logs only
-docker-compose logs -f postgres
-```
+If you experience any issues or have questions, feel free to open an issue on the GitHub repository. Your feedback is valuable for improving this application.
 
-## Environment Variables
+## 🌍 Community Resources
 
-Create a `.env` file in the root directory with the following variables:
+Join our community for discussions, help, and additional resources:
 
-```bash
-# Database Configuration
-DB_USER=app
-DB_PASSWORD=secret
-DB_NAME=quran
-DB_PORT=5434
+- **GitHub Discussions**: [Participate in discussions](https://github.com/Sasuke810/quran-researcher/discussions)
+- **Documentation**: Access detailed documentation for in-depth guidance. 
 
-# Application Port
-APP_PORT=3000
+Visit the [Releases page](https://github.com/Sasuke810/quran-researcher/releases) again for any updates or new versions of the software.
 
-# API Keys (optional, for AI features)
-OPENROUTER_API_KEY=your_openrouter_key
-OPENAI_API_KEY=your_openai_key
+## 📆 Next Steps
 
-# Node Environment
-NODE_ENV=production
-```
+Keep your application up-to-date by regularly checking the Releases page. Update your version to benefit from the latest features and improvements. 
 
-## Database Migrations
-
-Migrations run automatically when the PostgreSQL container is first initialized. The migration system:
-
-- Creates a `schema_migrations` table to track executed migrations
-- Runs all migration files from `database/migrations/` in order
-- Skips already-executed migrations on subsequent starts
-- Includes Quran text data and surah information
-
-To verify migrations:
-```bash
-docker exec quran-postgres psql -U app -d quran -c "SELECT id, name, executed_at FROM schema_migrations ORDER BY id;"
-```
-
-## Development Commands
-
-### Stop Services
-```bash
-docker-compose down
-```
-
-### Stop and Remove Volumes (Fresh Start)
-```bash
-docker-compose down -v
-```
-
-### Rebuild After Code Changes
-```bash
-docker-compose up -d --build
-```
-
-### Clean Start from Scratch
-```bash
-# Remove all containers and volumes
-docker-compose down -v
-
-# Remove orphan containers
-docker ps -a --filter "name=quran" --format "{{.Names}}" | xargs docker rm -f
-
-# Start fresh
-docker-compose up -d --build
-```
-
-## Local Development (Without Docker)
-
-If you prefer to run the app locally without Docker:
-
-```bash
-# Install dependencies
-yarn install
-
-# Start PostgreSQL separately (via Docker or local installation)
-# Make sure it's running on port 5432 or update DB_PORT in .env
-
-# Run migrations
-yarn migrate
-
-# Start development server
-yarn dev
-```
-
-The app will be available at http://localhost:3000 (or port specified in package.json)
-
-
-## Troubleshooting
-
-### Docker daemon not running
-```bash
-# macOS
-open -a Docker
-
-# Windows
-Start-Service docker
-
-# Linux
-sudo systemctl start docker
-
-# Wait for Docker to start, then retry
-docker-compose up -d
-```
-
-### Port already in use
-If port 3000 or 5434 is already in use, modify the ports in `.env`:
-```bash
-APP_PORT=3001
-DB_PORT=5435
-```
-
-### Build failures
-```bash
-# Clean Docker cache and rebuild
-docker-compose down
-docker system prune -a
-docker-compose up -d --build
-```
-
-### Database connection issues
-```bash
-# Check if PostgreSQL is healthy
-docker-compose ps
-
-# View PostgreSQL logs
-docker-compose logs postgres
-
-# Restart PostgreSQL
-docker-compose restart postgres
-```
+Happy studying!
